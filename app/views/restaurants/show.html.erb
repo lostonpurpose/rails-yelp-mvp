@@ -1,0 +1,33 @@
+<div class="container mt-3 ">
+  <div class="d-flex justify-content-between row vertical-align">
+    <div class="col-sm">
+      <div class="card-trip m-3">
+        <img src="https://loremflickr.com/320/240/soccer/all?lock=<%= @restaurant.id %>" />
+        <div class="card-trip-infos">
+          <h2><%= @restaurant.name %></h2>
+          <p><%= @restaurant.category %></p>
+          <div>
+            <h3><%= @restaurant.address %></h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <ul class="list-unstyled">
+        <% if @restaurant.reviews.any? %>
+          <h2>Reviews</h2>
+          <% @restaurant.reviews.each do |review| %>
+            <li>
+              <%= review.content %>
+              <%= link_to 'X', review_path(review), data: { turbo_method: :delete, turbo_confirm: 'Delete review?' } %>
+            </li>
+          <% end %>
+        <% else %>
+          <li>No reviews yet</li>
+        <% end %>
+      </ul>
+      <%= link_to "Home", restaurants_path, class: "btn btn-dark"  %>
+      <%= link_to "Review", new_restaurant_review_path(@restaurant), class: "btn btn-info" %>
+      <%= link_to 'Delete', restaurant_path(@restaurant), class: "btn btn-danger", data: { turbo_method: :delete, turbo_confirm: 'Delete restaurant?' } %>
+    </div>
+  </div>

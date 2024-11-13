@@ -7,3 +7,22 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+# Fill the DB with some instances we can use
+puts "Cleaning the DB..."
+Restaurant.destroy_all
+
+restaurants = [{name: "Turd Burger", address: "88 Fart Street", category: "chinese"}, 
+{name: "Ankle Cheese", address: "87 Fart Street", category: "french"},
+{name: "Poopsicle", address: "82 Diarrhea Lane", category: "french"},
+{name: "Curdled Milk Duds", address: "87 Delcious Blvd.", category: "french"},
+{name: "Shart!", address: "100 Fart Street", category: "french"},
+]
+
+puts "Creating #{restaurants.count} Restaurants..."
+
+restaurants.each do |restaurant|
+  Restaurant.create!(restaurant)
+end
+
+puts "... created #{Restaurant.count} restaurants"

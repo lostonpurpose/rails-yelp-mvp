@@ -1,0 +1,28 @@
+<div class="container mt-3">
+  <div class="d-flex justify-content-between">
+    <h1>Hello Restaurant Man</h1>
+    <%= link_to "Add Restaurant", new_restaurant_path, class: "d-flex btn btn-primary align-bottom" %>
+  </div>
+  <div class="row">
+    <% @restaurants.each do |restaurant| %>
+      <div class="col-sm">
+        <div class="card-trip m-3">
+          <img src="https://loremflickr.com/320/240/soccer/all?lock=<%= restaurant.id %>" />
+          <div class="card-trip-infos">
+            <div>
+              <%= link_to restaurant_path(restaurant), class: "text-decoration-none " do %>
+                <h2><strong><%= restaurant.name %></strong></h2>
+              <% end %>
+              <p><%= restaurant.category %></p>
+            </div>
+            <div class="card-trip-pricing">
+              <h3><%= restaurant.address %></h3>
+              <br>
+              <%# <h3>restaurant.phone_number</h3> %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
